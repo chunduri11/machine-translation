@@ -1,5 +1,4 @@
 SpeechRecognition
 PyAudio
 googletrans
-bing_translator
 gTTS
