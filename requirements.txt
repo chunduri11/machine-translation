@@ -3,3 +3,4 @@ PyAudio
 googletrans
 gTTS
 gcc
+python-devel
