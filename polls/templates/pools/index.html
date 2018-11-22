@@ -1,0 +1,228 @@
+<html>
+<head> <center>Non English To English text Conversion </center> </head>
+<br></br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+#nonenglish { float:left;margin:25px;background-color:pink;border-style:solid;width:560px;}
+#checkbox{height:20px;clear:both;}
+#checkbox ul {margin:0;padding:0;}
+#checkbox ul li {float:left;padding:5px;}
+#text ul li{float:left;
+padding:5px;
+}
+
+
+#English {float:right;margin:25px;background-color:pink;border-style:solid;width:535px;}
+
+
+#etext ul li{float:left;
+padding:5px;
+}
+
+
+
+#audiobutton ul li{float:left;height:50px;padding:70px;}
+#eaudiobutton ul li{float:left;height:50px;padding:70px;}
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+$('body').on('click', '#miphone', function()
+  {
+var checkedValue = $('.API:checked').val();
+  var selectedLanguage=document.getElementById('language');
+
+        var language =selectedLanguage.options[selectedLanguage.selectedIndex].text;
+        var english="true";
+        $.ajax({
+        type:"POST",
+        url:  '/language/',
+        data: {'language': language,'api':checkedValue,'english':english,csrfmiddlewaretoken: "{{ csrf_token }}",   // < here
+            state:"inactive"},
+
+      success: function (json) {
+           var response=json;
+           var text=json.split(":");
+           $("#gtext").html(text[0]);
+           $("#getext").html(text[1]);
+         }
+
+    });
+
+});
+});
+function playAudio(){
+   var x = document.createElement("AUDIO");
+   x.setAttribute("src","/media/aud_1.wav");
+   x.setAttribute("controls", "controls");
+
+  x.play();
+}
+
+function playAudio_nonE(){
+   var x = document.createElement("AUDIO");
+   x.setAttribute("src","/media/aud_2.wav");
+   x.setAttribute("controls", "controls");
+
+  x.play();
+}
+function formupload(){
+  var selectedLanguage=document.getElementById('language');
+
+        var language =selectedLanguage.options[selectedLanguage.selectedIndex].text;
+        document.getElementById('hide').value=language
+
+}
+
+
+function selectOnlyThis(id) {
+    for (var i = 1;i <= 3; i++)
+    {
+        document.getElementById(i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+$(document).ready(function(){
+$('body').on('click', '#nmiphone', function()
+  {
+var checkedValue = $('.API:checked').val();
+  var selectedLanguage=document.getElementById('language');
+
+        var language =selectedLanguage.options[selectedLanguage.selectedIndex].text;
+        var english="false";
+        $.ajax({
+        type:"POST",
+        url:  '/language/',
+        data: {'language': language,'api':checkedValue,'english':english,csrfmiddlewaretoken: "{{ csrf_token }}",   // < here
+            state:"inactive"},
+
+      success: function (json) {
+           var response=json;
+           var text=json.split(":");
+           $("#getext").html(text[0]);
+           $("#gtext").html(text[1]);
+         }
+
+    });
+
+});
+});
+
+
+</script>
+
+<body>
+<div id="container">
+
+<div id="nonenglish">
+<div id="nonenglishlist"><center><p>Non Englishlist</p> </center></div>
+<br></br>
+<div id="checkbox">
+<ul>
+<li>
+<input type="checkbox" class="API" id="1" value="Google" onclick="selectOnlyThis(this.id)">Google</input></li>
+<li><input type="checkbox" class="API" id="2" value="Amazon" onclick="selectOnlyThis(this.id)">Amazon</input></li>
+<li><input type="checkbox" class="API" id="3" value="Microsoft" onclick="selectOnlyThis(this.id)">MicroSoft</input></li>
+<li><select id="language">
+    <option value="German">German</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+    <option value="Telugu">Telugu</option>
+    <option value="Swedish">Swedish</option>
+  </select></li>
+</ul>
+</div>
+
+
+<div id="text">
+<ul>
+<li>
+<div class="inline-div">
+    <p align="center">google</p>
+    <textarea cols="15" rows="15" class="inline-txtarea" id="gtext"></textarea>
+</div></li>
+<li>
+<div class="inline-div">
+<p align="center">Microsoft</p>
+    <textarea cols="15" rows="15" class="inline-txtarea" id="mtext"></textarea>
+</div></li>
+<li>
+<div class="inline-div">
+    <p align="center">Amazon</p>
+    <textarea cols="15" rows="15" class="inline-txtarea" id="atext"></textarea>
+</div></li></ul>
+</div>
+
+
+<div id="audiobutton">
+<ul>
+<li><button style="font-size:24px" ><i class="fa fa-microphone" id="miphone"></i></button> </li>
+<li>
+        <button style="font-size:24px" onclick="playAudio()"><i class="fa fa-volume-up" id="naudio"  onclick="playAudio()"></i></button>
+		</li>
+</ul>
+
+
+</div>
+<form id="formdata" action="/upload/" method="post" enctype="multipart/form-data" >{% csrf_token %}
+<input id="fiileupload" type="file" name="filevalue" onchange="formupload()"  />
+
+
+
+<input type="hidden" id="hide"  name='languagevalue'/>
+<input type="submit" value="upload"/>
+
+</form>
+<a href='/download/'>Download Document</a>
+</div>
+
+<div id="English">
+<div id="englishlist"><center>Englishlist </center></div>
+<br>
+<br>
+<br>
+
+
+<div id="etext">
+<ul>
+<li>
+<div class="inline-div">
+    <p align="center">google</p>
+    <textarea cols="15" rows="15" class="inline-txtarea" id="getext"></textarea>
+</div></li>
+<li>
+<div class="inline-div">
+<p align="center">Microsoft</p>
+    <textarea cols="15" rows="15" class="inline-txtarea" id="metext"></textarea>
+</div></li>
+<li>
+<div class="inline-div">
+    <p align="center">Amazon</p>
+    <textarea cols="15" rows="15" class="inline-txtarea" id="aetext"></textarea>
+</div></li></ul>
+</div>
+<div id="eaudiobutton">
+<ul>
+<li><button style="font-size:24px" ><i class="fa fa-microphone" id="nmiphone"></i></button> </li>
+<li>
+        <button style="font-size:24px" onclick="playAudio_nonE()"><i class="fa fa-volume-up" id="naudio"  onclick="playAudio_nonE()"></i></button>
+		</li>
+
+</ul>
+
+</div>
+
+</div>
+</div>
+
+
+
+
+</body>
+
+
+</html>
