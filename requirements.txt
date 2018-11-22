@@ -2,4 +2,4 @@ SpeechRecognition
 PyAudio
 googletrans
 gTTS
-python3-dev
+python-dev
