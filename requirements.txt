@@ -2,4 +2,4 @@ SpeechRecognition
 PyAudio
 googletrans
 gTTS
-libevent-dev
+gcc
