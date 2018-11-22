@@ -3,3 +3,4 @@ PyAudio
 googletrans
 gTTS
 python-dev
+libevent-dev
