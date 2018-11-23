@@ -93,8 +93,5 @@ urllib3==1.24.1
 
 virtualenv==15.1.0
 ffmpeg
-ibasound-dev
-portaudio19-dev
-libportaudio2
 libportaudiocpp0
 libav-tools
