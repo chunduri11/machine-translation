@@ -70,7 +70,7 @@ pytest==3.0.6
 python-dateutil==2.6.0
 
 pytz==2018.7
-pypiwin32==219
+pypiwin32==223
 
 PyYAML==3.13
 
