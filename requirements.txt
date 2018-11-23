@@ -100,7 +100,6 @@ virtualenv==15.1.0
 
 youtube-dl==2018.10.5
 
-SpeechRecognition
 PyAudio
 googletrans
 gTTS
