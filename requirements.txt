@@ -92,4 +92,6 @@ translate==3.5.0
 urllib3==1.24.1
 
 virtualenv==15.1.0
-
+sudo yum -y install gcc gcc-c++ kernel-devel
+sudo yum -y install python-devel libxslt-devel libffi-devel openssl-devel
+pip install cryptography
