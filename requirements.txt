@@ -100,8 +100,6 @@ virtualenv==15.1.0
 
 youtube-dl==2018.10.5
 
-PyAudio
-googletrans
-gTTS
+
 gcc
 python-devel
