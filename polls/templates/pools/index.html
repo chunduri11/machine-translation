@@ -47,8 +47,14 @@ var checkedValue = $('.API:checked').val();
       success: function (json) {
            var response=json;
            var text=json.split(":");
-           $("#gtext").html(text[0]);
-           $("#getext").html(text[1]);
+           if (text[2] == "Google"){
+             $("#gtext").html(text[0]);
+             $("#getext").html(text[1]);
+           }
+           if (text[2] == "Houndify"){
+            $("#mtext").html(text[0]);
+            $("#metext").html(text[1]);
+          }
          }
 
     });
@@ -96,15 +102,22 @@ var checkedValue = $('.API:checked').val();
         var english="false";
         $.ajax({
         type:"POST",
-        url:  '/language/',
         data: {'language': language,'api':checkedValue,'english':english,csrfmiddlewaretoken: "{{ csrf_token }}",   // < here
+        url:  '/language/',
             state:"inactive"},
 
       success: function (json) {
            var response=json;
            var text=json.split(":");
-           $("#getext").html(text[0]);
-           $("#gtext").html(text[1]);
+           var api=text[2];
+          if (api == "Google"){
+            $("#gtext").html(text[0]);
+            $("#getext").html(text[1]);
+          }
+          if (api == "Houndify"){
+           $("#mtext").html(text[0]);
+           $("#metext").html(text[1]);
+         }
          }
 
     });
@@ -125,8 +138,8 @@ var checkedValue = $('.API:checked').val();
 <ul>
 <li>
 <input type="checkbox" class="API" id="1" value="Google" onclick="selectOnlyThis(this.id)">Google</input></li>
-<li><input type="checkbox" class="API" id="2" value="Amazon" onclick="selectOnlyThis(this.id)">Amazon</input></li>
-<li><input type="checkbox" class="API" id="3" value="Microsoft" onclick="selectOnlyThis(this.id)">MicroSoft</input></li>
+<li><input type="checkbox" class="API" id="2" value="Houndify" onclick="selectOnlyThis(this.id)">Houndify</input></li>
+<li><input type="checkbox" class="API" id="3" value="Amazon" onclick="selectOnlyThis(this.id)">Amazon</input></li>
 <li><select id="language">
     <option value="German">German</option>
     <option value="Spanish">Spanish</option>
@@ -147,7 +160,7 @@ var checkedValue = $('.API:checked').val();
 </div></li>
 <li>
 <div class="inline-div">
-<p align="center">Microsoft</p>
+<p align="center">Houndify</p>
     <textarea cols="15" rows="15" class="inline-txtarea" id="mtext"></textarea>
 </div></li>
 <li>
@@ -196,7 +209,7 @@ var checkedValue = $('.API:checked').val();
 </div></li>
 <li>
 <div class="inline-div">
-<p align="center">Microsoft</p>
+<p align="center">Houndify</p>
     <textarea cols="15" rows="15" class="inline-txtarea" id="metext"></textarea>
 </div></li>
 <li>

@@ -37,8 +37,9 @@ def  index(request):
 def  language(request):
             language=request.POST['language']
             english=request.POST['english']
-            # text = open('media/demo_eng_text111.txt', 'w')
-            # text.write(language)
+            api = request.POST['api']
+            text = open('media/demo_eng_text111.txt', 'w')
+            text.write(api)
 
             #import shutil
             #shutil.rmtree('C:\\Users\\a\\Desktop\\django_project\\myproject\\media\\')
@@ -232,19 +233,34 @@ def  language(request):
                 print("start print")
                 text = open('media\\text_2.txt', 'w', encoding="utf-8")
                 # print(r.recognize_google(audio))
-                if language == "German":
+                if language == "German" and api == "Google":
                     result = r.recognize_google(audio, language="de-DE")
                     text.write(r.recognize_google(audio, language="de-DE"))
-                if language == "Telugu":
+                if language == "Telugu" and api == "Google":
                     result = r.recognize_google(audio, language="te-IN")
                     text.write(r.recognize_google(audio, language="te-IN"))
-                if language == "Swedish":
+                if language == "Swedish" and api == "Google":
                     result = r.recognize_google(audio, language="sv-SE")
                     text.write(r.recognize_google(audio, language="sv-SE"))
-                if language == "French":
+                if language == "French" and api == "Google":
                     result = r.recognize_google(audio, language="fr-FR")
                     text.write(r.recognize_google(audio, language="fr-FR"))
-                if language == "Spanish":
+                if language == "Spanish" and api == "Google":
+                    result = r.recognize_google(audio, language="es-ES")
+                    text.write(r.recognize_google(audio, language="es-ES"))
+                if language == "German" and api == "Houndify":
+                    result = r.recognize_google(audio, language="de-DE")
+                    text.write(r.recognize_google(audio, language="de-DE"))
+                if language == "Telugu" and api == "Houndify":
+                    result = r.recognize_google(audio, language="te-IN")
+                    text.write(r.recognize_google(audio, language="te-IN"))
+                if language == "Swedish" and api == "Houndify":
+                    result = r.recognize_google(audio, language="sv-SE")
+                    text.write(r.recognize_google(audio, language="sv-SE"))
+                if language == "French" and api == "Houndify":
+                    result = r.recognize_google(audio, language="fr-FR")
+                    text.write(r.recognize_google(audio, language="fr-FR"))
+                if language == "Spanish" and api == "Houndify":
                     result = r.recognize_google(audio, language="es-ES")
                     text.write(r.recognize_google(audio, language="es-ES"))
                 text.close()
@@ -288,7 +304,7 @@ def  language(request):
                 #os.system("C:\\Users\\a\\Desktop\\django_project\\myproject\\media\\demo_eng.mp3")
 
 
-            return HttpResponse(result + "\n" +":"+ result_fren+'\n') # if everything is OK
+            return HttpResponse(result + "\n" +":"+ result_fren+'\n'+":"+api) # if everything is OK
             # nothing went well
             return HttpRepsonse('FAIL!!!!!')
 
