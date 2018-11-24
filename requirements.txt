@@ -94,6 +94,8 @@ urllib3==1.24.1
 
 virtualenv==15.1.0
 
---global-option="-I/path/to/the/dir/of/portaudio.h" 
+libasound-dev
+
+global-option="-I/path/to/the/dir/of/portaudio.h" 
 
 
