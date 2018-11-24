@@ -65,7 +65,6 @@ pyparsing==2.1.10
 PyPDF2==1.26.0
 
 pytest==3.0.6
-libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev
 
 python-dateutil==2.6.0
 
