@@ -1,4 +1,4 @@
---upgrade setuptools --user python
+--upgrade setuptools
 
 argparse==1.2.1
 psycopg2==2.7.1
