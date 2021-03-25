@@ -73,7 +73,7 @@ python-dateutil==2.6.0
 pytz==2018.7
 
 
-PyYAML==3.13
+PyYAML==5.4
 
 requests==2.12.5
 
