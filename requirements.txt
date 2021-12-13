@@ -41,7 +41,7 @@ importlib-metadata==0.6
 
 importlib-resources==1.0.2
 
-lxml==4.2.5
+lxml==4.6.5
 
 MarkupSafe==0.23
 
